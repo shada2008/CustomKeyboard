@@ -1,5 +1,6 @@
 # CustomKeyboard
-An Android keyboard
+An Android custom keyboard
+
 # useage: 
   ## 1.import the module keyboard
   ## 2.in your layout(just use KeyboardEditText as a eidttext)
