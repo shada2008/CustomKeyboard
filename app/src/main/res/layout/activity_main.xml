@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.example.demo.keyboard.keyboard.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="KEYBOARD_TYPE_STOCK_CODE"
+        app:showDeleteIcon="true"
+        app:deleteIconHeight="18dp"
+        app:deleteIconWidth="18dp"
+        app:keyboardType="KEYBOARD_TYPE_STOCK_CODE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.example.demo.keyboard.keyboard.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="KEYBOARD_TYPE_STOCK_AMOUNT"
+        app:keyboardType="KEYBOARD_TYPE_STOCK_AMOUNT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.example.demo.keyboard.keyboard.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="KEYBOARD_TYPE_QWER"
+        app:keyboardType="KEYBOARD_TYPE_QWER"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.example.demo.keyboard.keyboard.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="KEYBOARD_TYPE_NUMBER_ALL"
+        app:keyboardType="KEYBOARD_TYPE_NUMBER_ALL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.example.demo.keyboard.keyboard.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="KEYBOARD_TYPE_NUMBER"
+        app:keyboardType="KEYBOARD_TYPE_NUMBER"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.example.demo.keyboard.keyboard.KeyboardEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="KEYBOARD_TYPE_DECIMAL"
+        app:keyboardType="KEYBOARD_TYPE_DECIMAL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</LinearLayout>
