@@ -3,20 +3,15 @@ package com.example.demo.keyboard.keyboard;
 import android.content.Context;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
-import android.os.Build;
 import android.text.Editable;
-import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.demo.keyboard.R;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 import static com.example.demo.keyboard.keyboard.MultiKeyboardView.grayBackgroundArrays;
@@ -29,8 +24,6 @@ import static com.example.demo.keyboard.keyboard.MultiKeyboardView.grayBackgroun
 
 public class InputLayout extends RelativeLayout implements OnStockAmountListener, KeyboardView.OnKeyboardActionListener {
     private KeyboardEditText editText;
-    //edittext点击监听
-    private OnEditTextOnClickListener onEditTextOnClickListener;
     //确定按键点击监听
     private OnKeycodeOkClickListener onKeycodeOkClickListener;
     //隐藏按钮点击监听
@@ -139,10 +132,6 @@ public class InputLayout extends RelativeLayout implements OnStockAmountListener
                     } else {
                         showCurrentKeyboard();
                     }
-                    if (onEditTextOnClickListener != null) {
-                        onEditTextOnClickListener.onClick(v);
-                    }
-
                 }
             }
         });
@@ -234,10 +223,6 @@ public class InputLayout extends RelativeLayout implements OnStockAmountListener
         }
     }
 
-    public Keyboard getmCurrentKeyboard() {
-        return mCurrentKeyboard;
-    }
-
     public void setmCurrentKeyboard(Keyboard mCurrentKeyboard) {
         this.mCurrentKeyboard = mCurrentKeyboard;
     }
@@ -268,19 +253,9 @@ public class InputLayout extends RelativeLayout implements OnStockAmountListener
         }
     }
 
-
-    /**
-     * @param onEditTextOnClickListener edittext点击事件
-     */
-    public void setOnEditTextOnClickListener(OnEditTextOnClickListener onEditTextOnClickListener) {
-        this.onEditTextOnClickListener = onEditTextOnClickListener;
-    }
-
     public void setOnStockAmountListener(OnStockAmountListener onStockAmountListener) {
         this.onStockAmountListener = onStockAmountListener;
     }
-
-
 
 
     /**

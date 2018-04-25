@@ -31,6 +31,7 @@ public class KeyboardEditText extends EditTextWidthDeleteIcon {
     private static AlertDialog mKeyboardDialog;
     private onEditTextTouchListenr onEditTextTouchListenr;
     private static KeyboardEditText mCurrentKeyboardEditText;
+    private OnStockAmountListener mOnStockAmountListener;
 
     public void setOnEditTextTouchListenr(KeyboardEditText.onEditTextTouchListenr onEditTextTouchListenr) {
         this.onEditTextTouchListenr = onEditTextTouchListenr;
@@ -83,6 +84,9 @@ public class KeyboardEditText extends EditTextWidthDeleteIcon {
         }
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.BottomDialog);
         final InputLayout inputlayout = new InputLayout(getContext());
+        if (keyBoardType == Constants.KEYBOARD_TYPE_STOCK_AMOUNT && mOnStockAmountListener != null) {
+            inputlayout.setOnStockAmountListener(mOnStockAmountListener);
+        }
         mKeyboardDialog = builder.create();
         builder.setCancelable(true);
         mKeyboardDialog.show();
@@ -165,25 +169,29 @@ public class KeyboardEditText extends EditTextWidthDeleteIcon {
         super.onAttachedToWindow();
         View view = ((ViewGroup) getRootView().findViewById(android.R.id.content)).getChildAt(0);
         view.setOnTouchListener(new OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                boolean returnVlaue;
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        returnVlaue = true;
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if (mKeyboardDialog != null && mKeyboardDialog.isShowing()) {
-                            mKeyboardDialog.dismiss();
-                        }
-                        returnVlaue = false;
-                        break;
-                    default:
-                        returnVlaue = false;
-                }
-                return returnVlaue;
-            }
-        }
+                                    @Override
+                                    public boolean onTouch(View v, MotionEvent event) {
+                                        boolean returnVlaue;
+                                        switch (event.getAction()) {
+                                            case MotionEvent.ACTION_DOWN:
+                                                returnVlaue = true;
+                                                break;
+                                            case MotionEvent.ACTION_UP:
+                                                if (mKeyboardDialog != null && mKeyboardDialog.isShowing()) {
+                                                    mKeyboardDialog.dismiss();
+                                                }
+                                                returnVlaue = false;
+                                                break;
+                                            default:
+                                                returnVlaue = false;
+                                        }
+                                        return returnVlaue;
+                                    }
+                                }
         );
+    }
+
+    public void setOnStockAmountListener(OnStockAmountListener onStockAmountListener) {
+        mOnStockAmountListener = onStockAmountListener;
     }
 }
