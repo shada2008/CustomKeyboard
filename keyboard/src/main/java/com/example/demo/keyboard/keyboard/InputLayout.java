@@ -24,10 +24,8 @@ import static com.example.demo.keyboard.keyboard.MultiKeyboardView.grayBackgroun
 
 public class InputLayout extends RelativeLayout implements OnStockAmountListener, KeyboardView.OnKeyboardActionListener {
     private KeyboardEditText editText;
-    //确定按键点击监听
-    private OnKeycodeOkClickListener onKeycodeOkClickListener;
-    //隐藏按钮点击监听
-    private OnKeycodeHideClickListener onKeycodeHideClickListener;
+    //确定或隐藏按钮点击监听
+    private OnOKOrHiddenKeyClickListener mOnOKOrHiddenKeyClickListener;
     //股票数量按键点击监听
     private OnStockAmountListener onStockAmountListener;
     private LinearLayout rlKeyboardStock;
@@ -257,19 +255,11 @@ public class InputLayout extends RelativeLayout implements OnStockAmountListener
         this.onStockAmountListener = onStockAmountListener;
     }
 
-
     /**
-     * @param onKeycodeOkClickListener 确定按键监听
+     * @param onOKOrHiddenKeyClickListener 确定或取消按钮点击监听
      */
-    public void setOnKeycodeOkClickListener(OnKeycodeOkClickListener onKeycodeOkClickListener) {
-        this.onKeycodeOkClickListener = onKeycodeOkClickListener;
-    }
-
-    /**
-     * @param onKeycodeHideClickListener 取消按钮监听
-     */
-    public void setOnKeycodeHideClickListener(OnKeycodeHideClickListener onKeycodeHideClickListener) {
-        this.onKeycodeHideClickListener = onKeycodeHideClickListener;
+    public void setOnOKOrHiddenKeyClickListener(OnOKOrHiddenKeyClickListener onOKOrHiddenKeyClickListener) {
+        mOnOKOrHiddenKeyClickListener = onOKOrHiddenKeyClickListener;
     }
 
     @Override
@@ -323,11 +313,7 @@ public class InputLayout extends RelativeLayout implements OnStockAmountListener
                 mCurrentKeyboardType = Constants.KEYBOARD_TYPE_NUMBER_ALL;
             }
         } else if (primaryCode == Constants.KEYCODE_DOWN) {
-            if (onKeycodeHideClickListener != null) {
-                onKeycodeHideClickListener.onClick();
-            } else {
-                hide();
-            }
+            hide();
         } else if (primaryCode == Constants.KEYCODE_SIX_ZERO_ZERO) {
             editText.getEditableText().insert(editText.getSelectionStart(), "600");
         } else if (primaryCode == Constants.KEYCODE_THREE_ZERO_ZERO) {
@@ -362,8 +348,8 @@ public class InputLayout extends RelativeLayout implements OnStockAmountListener
             if (editText != null) {
                 editText.clearFocus();
             }
-            if (null != onKeycodeOkClickListener) {
-                boolean isHide = onKeycodeOkClickListener.onClick();
+            if (null != mOnOKOrHiddenKeyClickListener) {
+                boolean isHide = mOnOKOrHiddenKeyClickListener.onOKKeyClick();
                 if (isHide) {
                     hide();
                 }
@@ -373,8 +359,8 @@ public class InputLayout extends RelativeLayout implements OnStockAmountListener
         }
         //隐藏键
         if (primaryCode == Constants.KEYCODE_HIDE) {
-            if (onKeycodeHideClickListener != null) {
-                onKeycodeHideClickListener.onClick();
+            if (mOnOKOrHiddenKeyClickListener != null) {
+                mOnOKOrHiddenKeyClickListener.onHiddenKeyClick();
             } else {
                 hide();
             }

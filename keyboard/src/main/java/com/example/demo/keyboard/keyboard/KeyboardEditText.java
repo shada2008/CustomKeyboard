@@ -104,20 +104,20 @@ public class KeyboardEditText extends EditTextWidthDeleteIcon {
             attributes.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             window.setAttributes(attributes);
         }
-        inputlayout.setOnKeycodeOkClickListener(new OnKeycodeOkClickListener() {
+        inputlayout.setOnOKOrHiddenKeyClickListener(new OnOKOrHiddenKeyClickListener() {
             @Override
-            public boolean onClick() {
+            public boolean onOKKeyClick() {
+                mKeyboardDialog.dismiss();
+                return true;
+            }
+
+            @Override
+            public boolean onHiddenKeyClick() {
                 mKeyboardDialog.dismiss();
                 return true;
             }
         });
-        inputlayout.setOnKeycodeHideClickListener(new OnKeycodeHideClickListener() {
-            @Override
-            public boolean onClick() {
-                mKeyboardDialog.dismiss();
-                return true;
-            }
-        });
+
     }
 
     interface onEditTextTouchListenr {
